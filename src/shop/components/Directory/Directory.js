@@ -10,7 +10,7 @@ export const Directory = (props) => {
       title: 'hats',
       imageUrl: 'https://i.ibb.co/cvpntL1/hats.png',
       id: 1,
-      linkUrl: 'shop/hats'
+      linkUrl: 'hats'
     },
     {
       title: 'jackets',
@@ -43,7 +43,7 @@ export const Directory = (props) => {
   return (
     <div className="directory-menu">
       {
-        sections.map(({ title, imageUrl, id, size }) => <MenuItem key={id} title={title} imageUrl={imageUrl} size={size} />)
+        sections.map(({ id, ...otherProps }) => <MenuItem key={id} {...otherProps} />)
       }
     </div>
   );
