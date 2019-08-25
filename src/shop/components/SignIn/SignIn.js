@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import { FormInput } from '../FormInput/FormInput';
+
 import './SignIn.scss';
 
 
@@ -35,11 +37,17 @@ export const SignIn = () => {
       <span>Sign in with your email and password</span>
 
       <form onSubmit={handleSubmit}>
-        <input name="email" type="email" value={email} onChange={handleChange} required />
-        <label>Email</label>
+        <FormInput
+          name="email" type="email" label="Email"
+          value={email} handleChange={handleChange}
+          required
+        />
 
-        <input name="password" type="password" value={password} onChange={handleChange} required />
-        <label>Password</label>
+        <FormInput
+          name="password" type="password" label="Password"
+          value={password} onChange={handleChange}
+          required
+        />
 
         <input type="submit" value="Submit Form"/>
       </form>
