@@ -53,7 +53,7 @@ export const SignUp = (props) => {
       setPassword('');
       setConfirmPassword('');
     } catch (error) {
-      console.error(error);
+      console.error(error.message);
     }
   };
 
