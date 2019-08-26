@@ -11,14 +11,25 @@ import './App.css';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
-  let unSubscribeUser = useRef(null);
+  let unsubscribeFromAuth = useRef(null);
 
   useEffect(() => {
-    unSubscribeUser = auth.onAuthStateChanged(async (user) => {
-      createUserProfileDocument(user);
+    unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+
+        userRef.onSnapshot((snapShot) => {
+          setCurrentUser({
+            id: snapShot.id,
+            ...snapShot.data(),
+          }, );
+        });
+      } else {
+        setCurrentUser(userAuth);
+      }
     });
 
-    return (() => unSubscribeUser());
+    return (() => unsubscribeFromAuth());
   }, []);
 
   return (

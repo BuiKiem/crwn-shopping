@@ -33,6 +33,8 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
       console.log('Error creating user: ', error.message);
     }
   }
+
+  return userRef;
 };
 
 firebase.initializeApp(config);
