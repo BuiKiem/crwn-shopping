@@ -5,7 +5,7 @@ import { Homepage } from './shop/pages/Homepage/Homepage';
 import { CollectionPage } from './shop/pages/CollectionPage/CollectionPage';
 import { SignInSignUpPage } from './shop/pages/SignInSignUpPage/SignInSignUpPage';
 import { Header } from './shop/components/Header/Header';
-import { auth, createUserProfileDocument } from './firebase/firebase.utils';
+import { auth, createUserProfileDocument } from './shop/firebase/firebase.utils';
 
 import './App.css';
 

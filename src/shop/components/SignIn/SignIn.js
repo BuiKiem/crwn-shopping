@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { FormInput } from '../FormInput/FormInput';
 import { CustomButton } from '../CustomButton/CustomButton';
-import { auth, signInWithGoogle } from '../../../firebase/firebase.utils';
+import { auth, signInWithGoogle } from '../../firebase/firebase.utils';
 
 import './SignIn.scss';
 

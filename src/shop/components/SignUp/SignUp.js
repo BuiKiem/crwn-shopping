@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { FormInput } from '../FormInput/FormInput';
 import { CustomButton } from '../CustomButton/CustomButton';
 
-import { auth, createUserProfileDocument } from '../../../firebase/firebase.utils';
+import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
 
 import './SignUp.scss';
 
