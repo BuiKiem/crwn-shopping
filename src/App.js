@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { Switch, Route } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Homepage } from './shop/pages/Homepage/Homepage';
 import { CollectionPage } from './shop/pages/CollectionPage/CollectionPage';
@@ -14,6 +14,7 @@ import './App.css';
 
 function App() {
 
+  const currentUser = useSelector((state) => state.user.currentUser);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -24,9 +25,9 @@ function App() {
         userRef.onSnapshot((snapShot) => {
           dispatch(
             setCurrentUser({
-            id: snapShot.id,
-            ...snapShot.data(),
-          })
+              id: snapShot.id,
+              ...snapShot.data(),
+            })
           )
         });
       } else {
@@ -43,7 +44,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={Homepage} />
         <Route path="/collection" component={CollectionPage} />
-        <Route path="/signin" component={SignInSignUpPage} />
+        <Route path="/signin" render={() => currentUser ? <Redirect to='/' /> : <SignInSignUpPage />} />
       </Switch>
     </div>
   );
