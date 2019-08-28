@@ -8,13 +8,14 @@ import { SignInSignUpPage } from './shop/pages/SignInSignUpPage/SignInSignUpPage
 import { Header } from './shop/components/Header/Header';
 import { auth, createUserProfileDocument } from './shop/firebase/firebase.utils';
 
+import { selectCurrentUser } from "./shop/redux/user/userSelectors";
 import { setCurrentUser } from './shop/redux/user/userActions';
 
 import './App.css';
 
 function App() {
 
-  const currentUser = useSelector((state) => state.user.currentUser);
+  const currentUser = useSelector(selectCurrentUser);
   const dispatch = useDispatch();
 
   useEffect(() => {
