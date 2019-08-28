@@ -13,6 +13,7 @@ import './Header.scss';
 
 export const Header = () => {
   const currentUser = useSelector((state) => state.user.currentUser);
+  const hiddenCart = useSelector((state) => state.cart.hidden);
 
   return (
     <div className="header">
@@ -35,7 +36,7 @@ export const Header = () => {
         }
         <CartIcon />
       </div>
-      <CartDropdown />
+      { !hiddenCart && <CartDropdown /> }
     </div>
   );
 };
