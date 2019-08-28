@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Homepage } from './shop/pages/Homepage/Homepage';
 import { CollectionPage } from './shop/pages/CollectionPage/CollectionPage';
 import { SignInSignUpPage } from './shop/pages/SignInSignUpPage/SignInSignUpPage';
+import { CheckoutPage } from './shop/pages/CheckoutPage/CheckoutPage';
+
 import { Header } from './shop/components/Header/Header';
 import { auth, createUserProfileDocument } from './shop/firebase/firebase.utils';
 
@@ -44,6 +46,7 @@ function App() {
       <Header />
       <Switch>
         <Route exact path="/" component={Homepage} />
+        <Route exact path="/checkout" component={CheckoutPage} />
         <Route path="/collection" component={CollectionPage} />
         <Route path="/signin" render={() => currentUser ? <Redirect to='/' /> : <SignInSignUpPage />} />
       </Switch>
