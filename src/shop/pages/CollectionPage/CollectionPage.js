@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
 import { CollectionPreview} from '../../components/CollectionPreview/CollectionPreview';
 
-import { SHOP_DATA } from './data';
+import { selectCollections } from '../../redux/collection/collectionSelector';
 
-export const CollectionPage = (props) => {
-  const [collections, setCollections] = useState(SHOP_DATA);
+export const CollectionPage = () => {
+  const collections = useSelector(selectCollections);
 
   return (
     <div className="shop-page">
