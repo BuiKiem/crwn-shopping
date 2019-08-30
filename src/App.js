@@ -3,7 +3,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Homepage } from './shop/pages/Homepage/Homepage';
-import { CollectionPage } from './shop/pages/CollectionPage/CollectionPage';
+import { CollectionsPage } from './shop/pages/CollectionsPage/CollectionsPage';
 import { SignInSignUpPage } from './shop/pages/SignInSignUpPage/SignInSignUpPage';
 import { CheckoutPage } from './shop/pages/CheckoutPage/CheckoutPage';
 
@@ -47,7 +47,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={Homepage} />
         <Route exact path="/checkout" component={CheckoutPage} />
-        <Route path="/collection" component={CollectionPage} />
+        <Route path="/collection" component={CollectionsPage} />
         <Route path="/signin" render={() => currentUser ? <Redirect to='/' /> : <SignInSignUpPage />} />
       </Switch>
     </div>

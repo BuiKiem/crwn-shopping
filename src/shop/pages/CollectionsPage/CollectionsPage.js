@@ -2,11 +2,11 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 
 import { CollectionsOverview } from '../../components/CollectionOverview/CollectionsOverview';
-import { CategoryPage } from '../CategoryPage/CategoryPage';
+import { CollectionPage } from '../CategoryPage/CollectionPage';
 
-export const CollectionPage = ({ match }) => (
+export const CollectionsPage = ({ match }) => (
   <div className="collection-page">
     <Route exact path={`${match.path}`} component={CollectionsOverview} />
-    <Route path={`${match.path}/:categoryId`} component={CategoryPage} />
+    <Route path={`${match.path}/:collectionId`} component={CollectionPage} />
   </div>
 );
