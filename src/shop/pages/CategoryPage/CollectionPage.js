@@ -2,15 +2,19 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 import { CollectionItem } from '../../components/CollectionItem/CollectionItem';
+import {Spinner} from '../../components/Spinner/Spinner';
 
-import { selectCollection } from '../../redux/collection/collectionSelector';
+import { selectCollection, selectIsCollectionsLoaded } from '../../redux/collection/collectionSelector';
 
 import './CollectionPage.scss';
 
 
 export const CollectionPage = ({ match }) =>{
+  const isLoading = !useSelector(selectIsCollectionsLoaded);
   const collection = useSelector(selectCollection(match.params.collectionId));
   const { title, items } = collection;
+
+  if (isLoading) return <Spinner />;
 
   return (
     <div className="collection-page">
