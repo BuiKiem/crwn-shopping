@@ -22,3 +22,8 @@ export const selectIsCollectionsFetching = createSelector(
   [selectCollectionState],
   (collectionState) => collectionState.isFetching
 );
+
+export const selectIsCollectionsLoaded = createSelector(
+  [selectCollectionState],
+  (collectionState) => !!collectionState.collections
+);

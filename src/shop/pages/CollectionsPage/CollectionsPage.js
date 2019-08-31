@@ -8,7 +8,7 @@ import { withSpinner } from '../../components/withSpinner/withSpinner';
 import { CollectionPage } from '../CategoryPage/CollectionPage';
 
 import { fetchCollectionsStartAsync } from '../../redux/collection/collectionActions';
-import { selectIsCollectionsFetching } from '../../redux/collection/collectionSelector';
+import { selectIsCollectionsFetching, selectIsCollectionsLoaded } from '../../redux/collection/collectionSelector';
 
 
 const CollectionOverviewWithSpinner = withSpinner(CollectionsOverview);
@@ -17,6 +17,7 @@ const CollectionPageWithSpinner = withSpinner(CollectionPage);
 export const CollectionsPage = ({ match }) => {
   const dispatch = useDispatch();
   const isCollectionsFetching = useSelector(selectIsCollectionsFetching);
+  const isCollectionsLoaded = useSelector(selectIsCollectionsLoaded);
 
   useEffect(() => {
     dispatch(fetchCollectionsStartAsync())
@@ -30,7 +31,7 @@ export const CollectionsPage = ({ match }) => {
       />
       <Route
         path={`${match.path}/:collectionId`}
-        render={(props) => <CollectionPageWithSpinner isLoading={isCollectionsFetching} {...props} />}
+        render={(props) => <CollectionPageWithSpinner isLoading={!isCollectionsLoaded} {...props} />}
       />
     </div>
   );
