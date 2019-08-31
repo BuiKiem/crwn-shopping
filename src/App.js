@@ -41,7 +41,10 @@ function App() {
       }
     });
 
-    addCollectionAndDocuments('collections', collectionsArray);
+    addCollectionAndDocuments(
+      'collections',
+      collectionsArray.map(({ title, items }) => ({ title, items }))
+    );
 
     return (() => unsubscribeFromAuth());
   }, [dispatch]);
