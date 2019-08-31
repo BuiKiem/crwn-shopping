@@ -6,14 +6,14 @@ import { CollectionsOverview } from '../../components/CollectionOverview/Collect
 
 import { CollectionPage } from '../CategoryPage/CollectionPage';
 
-import { fetchCollectionsStartAsync } from '../../redux/collection/collectionActions';
+import { fetchCollectionsStart } from '../../redux/collection/collectionActions';
 
 
 export const CollectionsPage = ({ match }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchCollectionsStartAsync())
+    dispatch(fetchCollectionsStart())
   }, [dispatch]);
 
   return (
