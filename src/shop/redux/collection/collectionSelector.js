@@ -1,11 +1,11 @@
 import { createSelector } from 'reselect';
 
 
-const selectCollectionState = (state) => state.collection;
+const selectCollectionState = (rootState) => rootState.collection;
 
 export const selectCollections = createSelector(
   [selectCollectionState],
-  (collection) => collection.collections
+  (collectionState) => collectionState.collections
 );
 
 export const selectCollectionsForOverview = createSelector(
@@ -16,4 +16,9 @@ export const selectCollectionsForOverview = createSelector(
 export const selectCollection = (collectionUrlParam) => createSelector(
   [selectCollections],
   (collections) => collections ? collections[collectionUrlParam] : {}
+);
+
+export const selectIsCollectionsFetching = createSelector(
+  [selectCollectionState],
+  (collectionState) => collectionState.isFetching
 );
