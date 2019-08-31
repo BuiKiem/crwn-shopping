@@ -6,16 +6,19 @@ import { Homepage } from './shop/pages/Homepage/Homepage';
 import { CollectionsPage } from './shop/pages/CollectionsPage/CollectionsPage';
 import { SignInSignUpPage } from './shop/pages/SignInSignUpPage/SignInSignUpPage';
 import { CheckoutPage } from './shop/pages/CheckoutPage/CheckoutPage';
-
 import { Header } from './shop/components/Header/Header';
-import { auth, createUserProfileDocument } from './shop/firebase/firebase.utils';
+
+import { auth, createUserProfileDocument, addCollectionAndDocuments } from './shop/firebase/firebase.utils';
 
 import { selectCurrentUser } from "./shop/redux/user/userSelectors";
 import { setCurrentUser } from './shop/redux/user/userActions';
+import { selectCollectionsForOverview } from './shop/redux/collection/collectionSelector';
 
 import './App.css';
 
 function App() {
+
+  const collectionsArray = useSelector(selectCollectionsForOverview);
 
   const currentUser = useSelector(selectCurrentUser);
   const dispatch = useDispatch();
@@ -37,6 +40,8 @@ function App() {
         dispatch(setCurrentUser(userAuth));
       }
     });
+
+    addCollectionAndDocuments('collections', collectionsArray);
 
     return (() => unsubscribeFromAuth());
   }, [dispatch]);
