@@ -10,7 +10,7 @@ import { selectCartHidden } from '../../redux/cart/cartSelectors';
 import { CartIcon } from '../CartIcon/CartIcon';
 import { CartDropdown } from '../CartDropdown/CartDropdown';
 
-import './Header.scss';
+import classes from './Header.module.scss';
 
 
 export const Header = () => {
@@ -18,22 +18,22 @@ export const Header = () => {
   const hiddenCart = useSelector(selectCartHidden);
 
   return (
-    <div className="header">
-      <Link to="/" className="logo-container">
-        <Logo className="logo" />
+    <div className={classes.header}>
+      <Link to="/" className={classes.logoContainer}>
+        <Logo />
       </Link>
-      <div className="options">
-        <Link to="/collection" className="option">SHOP</Link>
-        <Link to="/collection" className="option">CONTACT</Link>
+      <div className={classes.options}>
+        <Link to="/collection" className={classes.option}>SHOP</Link>
+        <Link to="/collection" className={classes.option}>CONTACT</Link>
         {
           currentUser
             ? (
-              <div className="option" onClick={() => auth.signOut()}>
+              <div className={classes.option} onClick={() => auth.signOut()}>
                 SIGN OUT
               </div>
             )
             : (
-              <Link className="option" to="/signin">SIGN IN</Link>
+              <Link className={classes.option} to="/signin">SIGN IN</Link>
             )
         }
         <CartIcon />
