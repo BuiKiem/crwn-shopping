@@ -21,13 +21,20 @@ export const CollectionsPage = ({ match }) => {
 
   useEffect(() => {
     const collectionRef = firestore.collection('collections');
-    const unsubscribeFromSnapShot = collectionRef.onSnapshot(async (snapShot) => {
+
+    // collectionRef.get().then((snapShot) => {
+    //   const collectionsObject = converCollectionsSnapShotToObject(snapShot);
+    //   dispatch(updateCollections(collectionsObject));
+    //
+    //   setLoading(false);
+    // });
+
+    const unsubscribeFromSnapShot = collectionRef.onSnapshot((snapShot) => {
       const collectionsObject = converCollectionsSnapShotToObject(snapShot);
       dispatch(updateCollections(collectionsObject));
 
-      await setLoading(false);
+      setLoading(false);
     });
-
 
     return () => unsubscribeFromSnapShot();
   }, [dispatch]);
