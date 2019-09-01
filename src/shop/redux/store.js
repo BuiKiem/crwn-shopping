@@ -3,7 +3,7 @@ import logger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
 import { persistStore } from 'redux-persist';
 
-import { fetchCollectionsStart } from './collection/collectionSagas';
+import { rootSaga } from './rootSaga';
 
 import { rootReducer } from './rootReducer';
 
@@ -24,6 +24,6 @@ export const store = createStore(
   )
 );
 
-sagaMiddleware.run(fetchCollectionsStart);
+sagaMiddleware.run(rootSaga);
 
 export const persistor = persistStore(store);
