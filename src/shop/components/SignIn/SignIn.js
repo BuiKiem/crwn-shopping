@@ -3,9 +3,8 @@ import { useDispatch } from 'react-redux';
 
 import { FormInput } from '../FormInput/FormInput';
 import { CustomButton } from '../CustomButton/CustomButton';
-import { auth } from '../../firebase/firebase.utils';
 
-import { googleSignInStart } from '../../redux/user/userActions';
+import { googleSignInStart, emailSignInStart } from '../../redux/user/userActions';
 
 import './SignIn.scss';
 
@@ -20,16 +19,9 @@ export const SignIn = () => {
     dispatch(googleSignInStart());
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-
-    try {
-      await auth.signInWithEmailAndPassword(email, password);
-      setEmail('');
-      setPassword('');
-    } catch (error) {
-      console.error(error.message);
-    }
+    dispatch(emailSignInStart({ email, password }));
   };
 
   const handleChange = (event) => {

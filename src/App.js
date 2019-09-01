@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { Homepage } from './shop/pages/Homepage/Homepage';
 import { CollectionsPage } from './shop/pages/CollectionsPage/CollectionsPage';
@@ -8,20 +8,14 @@ import { SignInSignUpPage } from './shop/pages/SignInSignUpPage/SignInSignUpPage
 import { CheckoutPage } from './shop/pages/CheckoutPage/CheckoutPage';
 import { Header } from './shop/components/Header/Header';
 
-import { auth, createUserProfileDocument } from './shop/firebase/firebase.utils';
-
 import { selectCurrentUser } from "./shop/redux/user/userSelectors";
-import { setCurrentUser } from './shop/redux/user/userActions';
 
 import './App.css';
 
 function App() {
   const currentUser = useSelector(selectCurrentUser);
-  const dispatch = useDispatch();
 
   useEffect(() => {
-
-
     // const unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
     //   if (userAuth) {
     //     const userRef = await createUserProfileDocument(userAuth);
@@ -40,7 +34,7 @@ function App() {
     // });
     //
     // return () => unsubscribeFromAuth();
-  }, [dispatch]);
+  }, []);
 
   return (
     <div>
