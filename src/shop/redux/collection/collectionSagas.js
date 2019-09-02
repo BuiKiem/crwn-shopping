@@ -1,4 +1,4 @@
-import { takeLatest, call, put } from 'redux-saga/effects';
+import { takeLatest, call, put, all } from 'redux-saga/effects';
 
 import { collectionActionTypes } from './collectionActionTypes';
 import {fetchCollectionsFailure, fetchCollectionsSuccess} from "./collectionActions";
@@ -6,7 +6,7 @@ import {fetchCollectionsFailure, fetchCollectionsSuccess} from "./collectionActi
 import { converCollectionsSnapShotToObject, firestore } from '../../firebase/firebase.utils';
 
 
-export function* fetchCollectionsAsync() {
+function* fetchCollectionsAsync() {
   try {
     const collectionRef = firestore.collection('collections');
     const snapShot = yield collectionRef.get();
@@ -22,4 +22,10 @@ export function* fetchCollectionsStart() {
     collectionActionTypes.FETCH_COLLECTIONS_START,
     fetchCollectionsAsync
   );
+}
+
+export function* collectionSagas() {
+  yield all([
+    call(fetchCollectionsStart),
+  ]);
 }
