@@ -1,11 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { auth } from '../../firebase/firebase.utils';
-import { ReactComponent as Logo } from '../../assets/crown.svg'
+import { ReactComponent as Logo } from '../../assets/crown.svg';
+
 import { selectCurrentUser } from '../../redux/user/userSelectors';
 import { selectCartHidden } from '../../redux/cart/cartSelectors';
+
+import { signOutStart } from '../../redux/user/userActions';
 
 import { CartIcon } from '../CartIcon/CartIcon';
 import { CartDropdown } from '../CartDropdown/CartDropdown';
@@ -16,6 +18,12 @@ import classes from './Header.module.scss';
 export const Header = () => {
   const currentUser = useSelector(selectCurrentUser);
   const hiddenCart = useSelector(selectCartHidden);
+  const dispatch = useDispatch();
+
+  const onSignOut = (event) => {
+    event.preventDefault();
+    dispatch(signOutStart());
+  };
 
   return (
     <div className={classes.header}>
@@ -28,7 +36,7 @@ export const Header = () => {
         {
           currentUser
             ? (
-              <div className={classes.option} onClick={() => auth.signOut()}>
+              <div className={classes.option} onClick={onSignOut}>
                 SIGN OUT
               </div>
             )
