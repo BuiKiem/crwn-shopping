@@ -19,3 +19,7 @@ export const emailSignInStart = (credential) => ({
   type: userActionTypes.EMAIL_SIGN_IN_START,
   payload: credential
 });
+
+export const checkUserSession = () => ({
+  type: userActionTypes.CHECK_USER_SESSION
+});
